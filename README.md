@@ -21,20 +21,72 @@ In timing diagram Q0 is changing as soon as the negative edge of clock pulse is 
 ![image](https://github.com/naavaneetha/4-BIT-RIPPLE-COUNTER/assets/154305477/a573a7d6-014e-4e54-93e6-e2ac9530960b)
 
 ![image](https://github.com/naavaneetha/4-BIT-RIPPLE-COUNTER/assets/154305477/85e1958a-2fc1-49bb-9a9f-d58ccbf3663c)
-
 **Procedure**
 
-/* write all the steps invloved */
+1.Increment count on each positive edge of the clock. 
+
+2.Reset count to zero when it reaches 15. 
+
+3.Generate clock signal (clk). 
+
+4.Instantiate the RippleCounter module. 
+
+5.Conduct functional testing by displaying the count at each clock cycle for 16 cycles.
 
 **PROGRAM**
+```
+ Program for 4 Bit Ripple Counter and verify its truth table in quartus using Verilog programming.
 
-/* Program for 4 Bit Ripple Counter and verify its truth table in quartus using Verilog programming.
+ Developed by:HARISH PRANAV
+ RegisterNumber:212225040117
+ 
+ ```
+```
+module bitripple(
+    input  wire clk,      
+    input  wire reset_n,  
+    output reg  [3:0] q   
+);
 
- Developed by: RegisterNumber:
-*/
+
+    always @(negedge clk or negedge reset_n) begin
+        if (!reset_n)
+            q[0] <= 1'b0;
+        else
+            q[0] <= ~q[0];
+    end
+
+
+    always @(negedge q[0] or negedge reset_n) begin
+        if (!reset_n)
+            q[1] <= 1'b0;
+        else
+            q[1] <= ~q[1];
+    end
+
+
+    always @(negedge q[1] or negedge reset_n) begin
+        if (!reset_n)
+            q[2] <= 1'b0;
+        else
+            q[2] <= ~q[2];
+    end
+
+
+    always @(negedge q[2] or negedge reset_n) begin
+        if (!reset_n)
+            q[3] <= 1'b0;
+        else
+            q[3] <= ~q[3];
+    end
+
+endmodule
+```
 
 **RTL LOGIC FOR 4 Bit Ripple Counter**
+<img width="437" height="251" alt="image" src="https://github.com/user-attachments/assets/f030ba6c-fb2a-4aba-b001-182166b4e5f2" />
 
 **TIMING DIGRAMS FOR 4 Bit Ripple Counter**
+<img width="926" height="410" alt="image" src="https://github.com/user-attachments/assets/c8ac7581-6e76-4371-a10c-380a87cd4092" />
 
 **RESULTS**
